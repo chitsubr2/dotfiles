@@ -1,0 +1,7 @@
+(setq debug-on-error t)
+(add-to-list 'load-path "~/.emacs.d/")
+
+(setq process-connection-type nil)
+(require 'python-mode)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+

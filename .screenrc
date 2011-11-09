@@ -1,0 +1,51 @@
+#
+# screen(1) personal config file
+#
+# See "man screen" for more info.
+
+
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+screen 1
+select 1
+
+# turn off the introductory startup screen
+startup_message off
+
+# turn off debugging messages
+debug off
+
+# get a big history buffer
+defscrollback 10000
+
+# log screen sessions to a secure directory
+logfile $HOME/.screenlog/screen
+
+# visual bell stuff:
+vbell off
+vbellwait 1
+vbell_msg bing!
+
+# fix the underline-everything problem when going into history buffer
+#termcapinfo xterm* LP:hs@
+
+#bind j focus down
+#bind k focus up
+
+# special xterm hardstatus: use the window title.
+#termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+
+#bindkey ^bnfs1 screen -t nfs1 ssh nfsfarm01
+#bindkey ^bW ^bnfs1 ^bnfs2 ^bnfs3 ^bnfs4 ^bnfs5 ^bnfs6
+
+# change the default terminal
+#term xterms
+#escape ^Na
+caption always
+
+hardstatus alwayslastline
+hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][%= %{= kw}%?%-Lw%?%{= kW}%n*%f %t%?%?%{= kw}%?%+Lw%?%?%= ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
+
+escape ``
+

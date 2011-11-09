@@ -1,0 +1,525 @@
+This is gnus, produced by makeinfo version 4.8 from gnus.texi.
+
+   Copyright (C) 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003,
+2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover texts
+     being "A GNU Manual", and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     "GNU Free Documentation License" in the Emacs manual.
+
+     (a) The FSF's Back-Cover Text is: "You have freedom to copy and
+     modify this GNU Manual, like GNU software.  Copies published by
+     the Free Software Foundation raise funds for GNU development."
+
+     This document is part of a collection distributed under the GNU
+     Free Documentation License.  If you want to distribute this
+     document separately from the collection, you can do so by adding a
+     copy of the license to the document, as described in section 6 of
+     the license.
+
+   Copyright (C) 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003,
+2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.2 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, with the Front-Cover texts
+     being "A GNU Manual", and with the Back-Cover Texts as in (a)
+     below.  A copy of the license is included in the section entitled
+     "GNU Free Documentation License" in the Emacs manual.
+
+     (a) The FSF's Back-Cover Text is: "You have freedom to copy and
+     modify this GNU Manual, like GNU software.  Copies published by
+     the Free Software Foundation raise funds for GNU development."
+
+     This document is part of a collection distributed under the GNU
+     Free Documentation License.  If you want to distribute this
+     document separately from the collection, you can do so by adding a
+     copy of the license to the document, as described in section 6 of
+     the license.
+
+INFO-DIR-SECTION Emacs
+START-INFO-DIR-ENTRY
+* Gnus: (gnus).         The newsreader Gnus.
+END-INFO-DIR-ENTRY
+
+
+Indirect:
+gnus-1: 2391
+gnus-2: 302171
+gnus-3: 594376
+gnus-4: 894368
+gnus-5: 1068269
+
+Tag Table:
+(Indirect)
+Node: Top2391
+Node: Starting Up28913
+Node: Finding the News30555
+Node: The First Time33460
+Node: The Server is Down34397
+Node: Slave Gnusae35677
+Node: New Groups37640
+Node: Checking New Groups38496
+Node: Subscription Methods40413
+Node: Filtering New Groups43068
+Node: Changing Servers44945
+Node: Startup Files47203
+Node: Auto Save51302
+Node: The Active File52477
+Node: Startup Variables55167
+Node: Group Buffer56971
+Node: Group Buffer Format58461
+Node: Group Line Specification59223
+Node: Group Mode Line Specification63753
+Node: Group Highlighting64189
+Node: Group Maneuvering66590
+Node: Selecting a Group68011
+Node: Subscription Commands73258
+Node: Group Data74665
+Node: Group Levels75510
+Node: Group Score79798
+Node: Marking Groups81111
+Node: Foreign Groups82411
+Node: Group Parameters87284
+Ref: subscribed90014
+Node: Listing Groups102119
+Node: Sorting Groups105195
+Node: Group Maintenance108501
+Node: Browse Foreign Server109432
+Node: Exiting Gnus110706
+Node: Group Topics111711
+Node: Topic Commands113514
+Node: Topic Variables118798
+Node: Topic Sorting119849
+Node: Topic Topology121142
+Node: Topic Parameters122438
+Node: Misc Group Stuff125166
+Node: Scanning New Messages128597
+Node: Group Information129749
+Node: Group Timestamp131989
+Node: File Commands133533
+Node: Sieve Commands133993
+Node: Summary Buffer135813
+Node: Summary Buffer Format138746
+Node: Summary Buffer Lines139988
+Node: To From Newsgroups146222
+Node: Summary Buffer Mode Line149023
+Node: Summary Highlighting150521
+Node: Summary Maneuvering151683
+Node: Choosing Articles154777
+Node: Choosing Commands155085
+Node: Choosing Variables157199
+Node: Paging the Article158599
+Node: Reply Followup and Post160618
+Node: Summary Mail Commands160992
+Node: Summary Post Commands167057
+Node: Summary Message Commands169277
+Node: Canceling and Superseding169758
+Node: Delayed Articles172089
+Node: Marking Articles175553
+Node: Unread Articles176474
+Node: Read Articles177693
+Node: Other Marks179301
+Node: Setting Marks182872
+Node: Generic Marking Commands185795
+Node: Setting Process Marks187205
+Node: Limiting189623
+Node: Threading193206
+Node: Customizing Threading194904
+Node: Loose Threads195371
+Node: Filling In Threads201535
+Node: More Threading204182
+Node: Low-Level Threading206600
+Node: Thread Commands207731
+Node: Sorting the Summary Buffer210367
+Node: Asynchronous Fetching213543
+Node: Article Caching217019
+Node: Persistent Articles220417
+Node: Article Backlog221848
+Node: Saving Articles222908
+Node: Decoding Articles233256
+Node: Uuencoded Articles234798
+Node: Shell Archives236123
+Node: PostScript Files236803
+Node: Other Files237339
+Node: Decoding Variables237652
+Node: Rule Variables238049
+Node: Other Decode Variables238952
+Node: Uuencoding and Posting241907
+Node: Viewing Files243228
+Node: Article Treatment244932
+Node: Article Highlighting246156
+Node: Article Fontisizing249318
+Node: Article Hiding251198
+Node: Article Washing256286
+Ref: Article Washing-Footnote-1264369
+Node: Article Header264471
+Node: Article Buttons265068
+Node: Article Button Levels269713
+Node: Article Date272134
+Node: Article Display274376
+Node: Article Signature275779
+Node: Article Miscellanea277936
+Node: MIME Commands278178
+Node: Charsets285392
+Node: Article Commands288403
+Node: Summary Sorting288820
+Node: Finding the Parent290078
+Node: Alternative Approaches293897
+Node: Pick and Read294354
+Node: Binary Groups297164
+Node: Tree Display297828
+Node: Mail Group Commands302171
+Node: Various Summary Stuff306740
+Node: Summary Group Information310454
+Node: Searching for Articles311467
+Node: Summary Generation Commands312513
+Node: Really Various Summary Commands313074
+Node: Exiting the Summary Buffer314876
+Node: Crosspost Handling318326
+Node: Duplicate Suppression320544
+Node: Security323412
+Node: Mailing List326189
+Node: Article Buffer327114
+Node: Hiding Headers327769
+Node: Using MIME331953
+Node: Customizing Articles336316
+Node: Article Keymap341230
+Node: Misc Article343235
+Node: Composing Messages346367
+Node: Mail347567
+Node: Posting Server348838
+Node: POP before SMTP351342
+Node: Mail and Post353181
+Node: Archived Messages355235
+Node: Posting Styles360541
+Node: Drafts365974
+Node: Rejected Articles368555
+Node: Signing and encrypting369521
+Node: Select Methods370979
+Node: Server Buffer372887
+Node: Server Buffer Format374742
+Node: Server Commands375552
+Node: Example Methods376660
+Node: Creating a Virtual Server379496
+Node: Server Variables380621
+Node: Servers and Methods381896
+Node: Unavailable Servers382323
+Node: Getting News384179
+Node: NNTP384632
+Node: Direct Functions394460
+Node: Indirect Functions396829
+Node: Common Variables399557
+Node: News Spool401148
+Node: Getting Mail402904
+Node: Mail in a Newsreader404022
+Node: Getting Started Reading Mail407207
+Node: Splitting Mail408749
+Node: Mail Sources413789
+Node: Mail Source Specifiers414302
+Node: Mail Source Customization427701
+Node: Fetching Mail429899
+Node: Mail Back End Variables431228
+Node: Fancy Mail Splitting433834
+Node: Group Mail Splitting443967
+Node: Incorporating Old Mail449528
+Node: Expiring Mail451247
+Node: Washing Mail459541
+Node: Duplicates462918
+Node: Not Reading Mail465139
+Node: Choosing a Mail Back End466176
+Node: Unix Mail Box467226
+Node: Rmail Babyl467890
+Node: Mail Spool468535
+Node: MH Spool472124
+Node: Maildir473218
+Node: Mail Folders486562
+Node: Comparing Mail Back Ends489683
+Node: Browsing the Web498783
+Node: Archiving Mail501078
+Node: Web Searches502584
+Node: Slashdot505631
+Node: Ultimate508376
+Node: Web Archive509366
+Node: RSS510453
+Node: Customizing W3515743
+Node: IMAP516735
+Node: Splitting in IMAP530342
+Node: Expiring in IMAP536240
+Node: Editing IMAP ACLs537865
+Node: Expunging mailboxes538847
+Node: A note on namespaces539275
+Node: Debugging IMAP541231
+Node: Other Sources542468
+Node: Directory Groups543110
+Node: Anything Groups544233
+Node: Document Groups546918
+Node: Document Server Internals549808
+Node: SOUP555940
+Node: SOUP Commands558865
+Node: SOUP Groups560692
+Node: SOUP Replies562680
+Node: Mail-To-News Gateways563415
+Node: Combined Groups565267
+Node: Virtual Groups565660
+Node: Kibozed Groups569386
+Node: Email Based Diary571390
+Node: The NNDiary Back End573199
+Node: Diary Messages574055
+Node: Running NNDiary576003
+Node: Customizing NNDiary578807
+Node: The Gnus Diary Library579700
+Node: Diary Summary Line Format580663
+Node: Diary Articles Sorting582772
+Node: Diary Headers Generation583521
+Node: Diary Group Parameters584487
+Node: Sending or Not Sending585173
+Node: Gnus Unplugged585959
+Node: Agent Basics588080
+Node: Agent Categories592486
+Node: Category Syntax594376
+Node: Category Buffer603891
+Node: Category Variables605030
+Node: Agent Commands606841
+Node: Group Agent Commands607416
+Node: Summary Agent Commands608382
+Node: Server Agent Commands609303
+Node: Agent Visuals609701
+Node: Agent as Cache613300
+Node: Agent Expiry614382
+Node: Agent Regeneration615818
+Node: Agent and IMAP617168
+Node: Outgoing Messages619431
+Node: Agent Variables620011
+Node: Example Setup624817
+Node: Batching Agents626697
+Node: Agent Caveats627243
+Node: Scoring628043
+Node: Summary Score Commands630435
+Node: Group Score Commands636390
+Node: Score Variables636909
+Node: Score File Format643250
+Node: Score File Editing656222
+Node: Adaptive Scoring657347
+Node: Home Score File663783
+Node: Followups To Yourself666732
+Node: Scoring On Other Headers668241
+Node: Scoring Tips669442
+Node: Reverse Scoring671013
+Node: Global Score Files671520
+Node: Kill Files674284
+Node: Converting Kill Files676854
+Node: GroupLens677576
+Node: Using GroupLens678918
+Node: Rating Articles680088
+Node: Displaying Predictions681262
+Node: GroupLens Variables683140
+Node: Advanced Scoring684131
+Node: Advanced Scoring Syntax684869
+Node: Advanced Scoring Examples686724
+Node: Advanced Scoring Tips688544
+Node: Score Decays689624
+Node: Various691824
+Node: Process/Prefix693442
+Node: Interactive695544
+Node: Symbolic Prefixes696420
+Node: Formatting Variables697954
+Node: Formatting Basics699928
+Node: Mode Line Formatting700929
+Node: Advanced Formatting701831
+Node: User-Defined Specs703870
+Node: Formatting Fonts705020
+Node: Positioning Point707244
+Node: Tabulation708014
+Node: Wide Characters708901
+Node: Window Layout709599
+Node: Faces and Fonts719637
+Node: Compilation719990
+Node: Mode Lines720986
+Node: Highlighting and Menus722651
+Node: Buttons724904
+Node: Daemons726223
+Node: NoCeM729021
+Node: Undo734012
+Node: Predicate Specifiers735610
+Node: Moderation736385
+Node: Fetching a Group737594
+Node: Image Enhancements738060
+Ref: Image Enhancements-Footnote-1738769
+Node: X-Face738839
+Node: Face742408
+Node: Smileys743641
+Node: Picons744751
+Node: XVarious746953
+Node: Fuzzy Matching748355
+Node: Thwarting Email Spam749140
+Node: The problem of spam750603
+Node: Anti-Spam Basics755156
+Node: SpamAssassin757488
+Node: Hashcash760601
+Node: Spam Package763430
+Node: Spam Package Introduction764071
+Node: Filtering Incoming Mail769544
+Node: Detecting Spam in Groups773650
+Node: Spam and Ham Processors774903
+Node: Spam Package Configuration Examples782851
+Node: Spam Back Ends789611
+Node: Blacklists and Whitelists790316
+Node: BBDB Whitelists793525
+Node: Gmane Spam Reporting795188
+Node: Anti-spam Hashcash Payments796414
+Node: Blackholes797132
+Node: Regular Expressions Header Matching798659
+Node: Bogofilter799752
+Node: ifile spam filtering803234
+Node: Spam Statistics Filtering804476
+Node: SpamOracle806496
+Node: Extending the Spam package811190
+Node: Spam Statistics Package814097
+Node: Creating a spam-stat dictionary816056
+Node: Splitting mail using spam-stat818923
+Node: Low-level interface to the spam-stat dictionary821540
+Node: Other modes824694
+Node: Various Various825480
+Node: The End829331
+Node: Appendices829977
+Node: XEmacs830710
+Node: History831120
+Node: Gnus Versions832861
+Node: Other Gnus Versions834288
+Node: Why?834931
+Node: Compatibility836305
+Node: Conformity839020
+Node: Emacsen841677
+Node: Gnus Development842449
+Node: Contributors844719
+Node: New Features851228
+Node: ding Gnus851967
+Node: September Gnus855334
+Node: Red Gnus860442
+Node: Quassia Gnus864170
+Node: Pterodactyl Gnus867370
+Node: Oort Gnus869066
+Node: On Writing Manuals893421
+Node: Terminology894368
+Node: Customization902286
+Node: Slow/Expensive Connection902896
+Ref: Slow/Expensive Connection-Footnote-1904510
+Node: Slow Terminal Connection904631
+Node: Little Disk Space906322
+Node: Slow Machine907357
+Node: Troubleshooting907885
+Node: Gnus Reference Guide912475
+Node: Gnus Utility Functions913870
+Node: Back End Interface916383
+Ref: Back End Interface-Footnote-1920404
+Node: Required Back End Functions920497
+Node: Optional Back End Functions928721
+Node: Error Messaging937785
+Node: Writing New Back Ends938879
+Node: Hooking New Back Ends Into Gnus944357
+Node: Mail-like Back Ends945816
+Node: Score File Syntax947456
+Node: Headers950864
+Node: Ranges952114
+Node: Group Info954159
+Node: Extended Interactive957597
+Node: Emacs/XEmacs Code958985
+Node: Various File Formats960953
+Node: Active File Format961246
+Node: Newsgroups File Format962242
+Node: Emacs for Heathens962916
+Node: Keystrokes963733
+Node: Emacs Lisp965631
+Node: Frequently Asked Questions967946
+Node: FAQ - Changes970103
+Node: FAQ - Introduction970305
+Node: FAQ 1 - Installation FAQ972129
+Node: [1.1]972702
+Node: [1.2]973132
+Node: [1.3]973846
+Node: [1.4]974388
+Node: [1.5]975467
+Node: [1.6]975984
+Node: [1.7]976327
+Node: FAQ 2 - Startup / Group buffer976696
+Node: [2.1]977531
+Node: [2.2]978148
+Node: [2.3]978502
+Node: [2.4]978960
+Node: [2.5]979833
+Node: FAQ 3 - Getting Messages980172
+Node: [3.1]981494
+Node: [3.2]982032
+Node: [3.3]983408
+Node: [3.4]983940
+Node: [3.5]984497
+Node: [3.6]984945
+Node: [3.7]985493
+Node: [3.8]986368
+Node: [3.9]989517
+Node: [3.10]991066
+Node: [3.11]991418
+Node: FAQ 4 - Reading messages992903
+Node: [4.1]994770
+Node: [4.2]995933
+Node: [4.3]996414
+Node: [4.4]996643
+Node: [4.5]996879
+Node: [4.6]997506
+Node: [4.7]998101
+Node: [4.8]998572
+Node: [4.9]999249
+Node: [4.10]1002101
+Node: [4.11]1002713
+Node: [4.12]1003304
+Node: [4.13]1004235
+Node: [4.14]1005392
+Node: [4.15]1007515
+Node: FAQ 5 - Composing messages1010613
+Node: [5.1]1012061
+Node: [5.2]1013001
+Node: [5.3]1013390
+Node: [5.4]1014560
+Node: [5.5]1016615
+Node: [5.6]1017917
+Node: [5.7]1018553
+Node: [5.8]1020509
+Node: [5.9]1021987
+Node: [5.10]1022811
+Node: [5.11]1023203
+Node: [5.12]1023790
+Node: FAQ 6 - Old messages1025767
+Node: [6.1]1026389
+Node: [6.2]1027344
+Node: [6.3]1028961
+Node: [6.4]1030613
+Node: [6.5]1031505
+Node: [6.6]1032802
+Node: FAQ 7 - Gnus in a dial-up environment1033288
+Node: [7.1]1033875
+Node: [7.2]1035642
+Node: [7.3]1036749
+Node: [7.4]1038177
+Node: FAQ 8 - Getting help1038712
+Node: [8.1]1039295
+Node: [8.2]1039883
+Node: [8.3]1040398
+Node: [8.4]1040843
+Node: [8.5]1041741
+Node: [8.6]1042060
+Node: FAQ 9 - Tuning Gnus1042272
+Node: [9.1]1042637
+Node: [9.2]1043590
+Node: [9.3]1044647
+Node: FAQ - Glossary1045019
+Node: GNU Free Documentation License1046059
+Node: Index1068269
+Node: Key Index1281276
+
+End Tag Table

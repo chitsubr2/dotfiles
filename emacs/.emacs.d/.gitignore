@@ -1,0 +1,10 @@
+*.elc
+*~
+*dat
+*saveplace*
+tramp
+elpa*
+*bak
+plugins
+pylookup
+build

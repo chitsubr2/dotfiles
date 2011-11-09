@@ -1,0 +1,236 @@
+require("new-tabs.js");
+require("clicks-in-new-buffer.js");
+require("page-modes/google-search-results.js");
+require("page-modes/wikipedia.js");
+require("index-webjump.js");
+require("session.js");
+require("block-content-focus-change.js");
+require("favicon");
+require("mode-line.js");
+require("session.js");
+require("favicon");
+
+add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true);
+add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
+remove_hook("mode_line_hook", mode_line_adder(clock_widget));
+
+homepage = "about:blank"
+user_pref("accessibility.warn_on_browsewithcaret", false);
+user_pref("conkeror.load.tab-bar", 1);
+session_pref("xpinstall.whitelist.required", false);
+
+define_webjump("ew",    "http://emacswiki.org");
+define_webjump("so",    "http://stackoverflow.com/search?q=%s");
+define_webjump("yts",   "http://www.youtube.com/results?search_query=%s&aq=f");
+define_webjump("imbd",  "http://www.imdb.com/find?s=all&q=%s");
+
+hints_display_url_panel = true;
+isearch_keep_selection = true;
+read_buffer_show_icons = true;
+clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND;
+clicks_in_new_buffer_button = 2;
+minibuffer_auto_complete_default = true;
+url_completion_use_history = true;
+url_completion_use_bookmarks = true;
+session_auto_save_auto_load = true;
+session_auto_save_auto_load_fn = session_auto_save_load_window_current;
+url_remoting_fn = load_url_in_new_buffer;
+
+minibuffer.prototype.read_recent_buffer = function () {
+    var window = this.window;
+    var buffer = this.window.buffers.current;
+    keywords(arguments, $prompt = "Buffer:",
+             $default = buffer,
+             $history = "buffer");
+    var buffers = window.buffers.buffer_list.slice(0);
+    buffers.push(buffers.shift());
+    var completer = all_word_completer(
+        $completions = buffers,
+        $get_string = function (x) x.title,
+        $get_description = function (x) x.description);
+    var result = yield this.read(
+        $keymap = read_buffer_keymap,
+        $prompt = arguments.$prompt,
+        $history = arguments.$history,
+        $completer = completer,
+        $match_required = true,
+        $auto_complete = "buffer",
+        $auto_complete_initial = true,
+        $auto_complete_delay = 0,
+        $default_completion = arguments.$default);
+    yield co_return(result);
+};
+
+interactive("switch-to-recent-buffer",
+            "Switch to a buffer specified in the minibuffer.  List of buffers "+
+            "will be ordered by recency.",
+            function (I) {
+                switch_to_buffer(
+                    I.window,
+                    (yield I.minibuffer.read_recent_buffer(
+                         $prompt = "Switch to buffer:",
+                         $default = (I.window.buffers.count > 1 ?
+                                     I.window.buffers.buffer_list[1] :
+                                     I.buffer))));
+            });
+
+
+zoom_levels = [ 100, 110, 120, 125, 130, 135, 140, 145, 150, 160, 200, 300 ];
+
+function my_zoom_set (buffer) {
+    browser_zoom_set(buffer, false, 110);
+}
+add_hook('create_buffer_late_hook', my_zoom_set);
+
+function define_switch_buffer_key (key, buf_num) {
+    define_key(default_global_keymap, key,
+               function (I) {
+                   switch_to_buffer(I.window,
+                                    I.window.buffers.get_buffer(buf_num));
+               });
+}
+
+for (let i = 0; i < 10; ++i) {
+    define_switch_buffer_key(String((i+1)%10), i);
+}
+
+define_key(content_buffer_normal_keymap, "l",
+      function (I) {
+      	       switch_to_buffer(I.window,
+	       			I.window.buffers.get_buffer(I.window.buffers.count-1));
+      });
+
+// add favicons
+read_buffer_show_icons = true;
+
+function enable_scrollbars (buffer) {
+    buffer.top_frame.scrollbars.visible = true;
+}
+add_hook("create_buffer_late_hook", enable_scrollbars);
+
+can_kill_last_buffer = false;
+
+//allow for 'contrib' stuff
+load_paths.unshift("chrome://conkeror-contrib/content/");
+
+// Mode-line
+mode_line_mode(true);
+
+// FAVICONS
+ require("favicon.js");
+add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true);
+read_buffer_show_icons = true;
+
+// we'd like to see the # of buffers being loaded
+add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true);
+
+// but really we'd also like to know how many buffers are present and which is the current
+add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true);
+
+// remove the clock
+remove_hook("mode_line_hook", mode_line_adder(clock_widget));
+
+// redefine l as "follow link" (like f)
+// (too many of the keys are for the left hand, I like "l" for "link")
+// define_key(content_buffer_normal_keymap, "l", "follow");
+
+// Use M-l to follow link in new background buffer
+
+// use M-y to google current selection in new buffer
+// use M-Y to google current selection in new buffer "double-quoted"
+
+// [ref: http://www.mozdev.org/pipermail/conkeror/2009-February/001334.html ]
+// (See also "**c" for selecting text)
+interactive("search-clipboard-contents", "Search in Google the content of the X clipboard (the selected text)",
+              "find-url",
+              $browser_object=
+              function(I) {
+                  return "g "+ read_from_x_primary_selection();
+              }
+);
+interactive("search-clipboard-contents-doublequoted", "Search in Google the content of the X clipboard (the selected text) as a fixed string",
+              "find-url",
+              $browser_object=
+              function(I) {
+                  return "g \""+ read_from_x_primary_selection()+"\"";
+              }
+
+);
+
+//active_hint_background_color="#f5f5f5"
+//hint_background_color="gray"
+read_url_handler_list = [read_url_make_default_webjump_handler("google")];
+
+hint_background_color = 'white';
+active_hint_background_color = '#00ccff';
+
+
+// http://lab.arc90.com/experiments/readability/
+interactive("readability_arc90",
+            "Readability is a simple tool that makes reading on the web more enjoyable by removing the clutter around what you are reading",
+            function readability_arc90(I) {
+                var document = I.window.buffers.current.document;
+
+                _readability_readStyle=document.createElement('SCRIPT');
+                _readability_readStyle.text = 'var readStyle = style-novel;';
+                document.getElementsByTagName('head')[0].appendChild(_readability_readStyle);
+                _readability_readSize=document.createElement('SCRIPT');
+                _readability_readSize.text = 'var readSize = size-large;';
+                document.getElementsByTagName('head')[0].appendChild(_readability_readSize);
+                _readability_readMargin=document.createElement('SCRIPT');
+                _readability_readMargin.text = 'var readMargin = margin-narrow;';
+                document.getElementsByTagName('head')[0].appendChild(_readability_readMargin);
+                _readability_script=document.createElement('SCRIPT');
+                _readability_script.type='text/javascript';
+                _readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());
+                document.getElementsByTagName('head')[0].appendChild(_readability_script);
+                _readability_css=document.createElement('LINK');
+                _readability_css.rel='stylesheet';
+                _readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';
+                _readability_css.type='text/css';
+                _readability_css.media='screen';
+                document.getElementsByTagName('head')[0].appendChild(_readability_css);
+                _readability_print_css=document.createElement('LINK');
+                _readability_print_css.rel='stylesheet';
+                _readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';
+                _readability_print_css.media='print';
+                _readability_print_css.type='text/css';
+                document.getElementsByTagName('head')[0].appendChild(_readability_print_css);
+            });
+
+define_key(content_buffer_normal_keymap, "a", "back");
+define_key(content_buffer_normal_keymap, "b", "back");
+define_key(content_buffer_normal_keymap, "d", "forward");
+define_key(content_buffer_normal_keymap, "z", "find-url");
+define_key(content_buffer_normal_keymap, "B", "bookmark");
+define_key(content_buffer_normal_keymap, "_", "zoom-out-text");
+define_key(content_buffer_normal_keymap, "`", "readability_arc90");
+define_key(content_buffer_normal_keymap, "left", "buffer-previous");
+define_key(content_buffer_normal_keymap, "right", "buffer-next");
+
+define_key(content_buffer_normal_keymap, "C-l", "find-url");
+define_key(content_buffer_normal_keymap, "C-t", "find-url-new-buffer");
+define_key(read_buffer_keymap, "C-tab", "minibuffer-complete");
+define_key(read_buffer_keymap, "C-S-tab", "minibuffer-complete-previous");
+define_key(content_buffer_normal_keymap, "C-return", "follow-new-buffer");
+define_key(default_global_keymap, "C-x B", "switch-to-recent-buffer");
+define_key(content_buffer_normal_keymap, "C-x C-s", "session-save");
+define_key(default_global_keymap, "C-x C-r", "reinit");
+define_key(default_global_keymap, "C-w", "copy");
+
+define_key(content_buffer_normal_keymap, "M-e", "unfocus");
+define_key(content_buffer_normal_keymap, "M-l", "find-url");
+define_key(content_buffer_normal_keymap, "M-t", "find-url-new-buffer");
+define_key(content_buffer_normal_keymap, "M-f", "buffer-next");
+define_key(content_buffer_normal_keymap, "M-b", "buffer-previous");
+define_key(default_global_keymap, "M-l", "follow-new-buffer-background");
+define_key(content_buffer_normal_keymap, "M-y", "search-clipboard-contents");
+define_key(content_buffer_normal_keymap, "M-Y", "search-clipboard-contents-doublequoted");
+define_key(default_global_keymap, "M-}", "switch-to-recent-buffer");
+define_key(default_global_keymap, "M-{", "switch-to-recent-buffer");
+define_key(content_buffer_normal_keymap, "M-=", "zoom-in-text");
+define_key(content_buffer_normal_keymap, "M--", "zoom-out-text");
+define_key(content_buffer_normal_keymap, "M-left", "back");
+define_key(content_buffer_normal_keymap, "M-right", "forward");
+define_key(content_buffer_normal_keymap, "M-return", "follow-new-buffer");
+
